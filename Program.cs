@@ -9,7 +9,8 @@ namespace PetApp
     {
       var shelter = new List<string>();
 
-      while (true)
+      var isRunning = true;
+      while (isRunning)
       {
         Console.WriteLine("Current Pets");
         Console.WriteLine($"There are {shelter.Count} pets.");
@@ -19,12 +20,34 @@ namespace PetApp
           Console.WriteLine($"{i}:{currentPet}");
         }
 
-        Console.WriteLine("What pet would you like to add?");
-        var pet = Console.ReadLine();
+        //small menu system
+        Console.WriteLine("What do you want to do?");
+        Console.WriteLine("(ADD) a pet?");
+        Console.WriteLine("(ADOPT) a pet");
+        Console.WriteLine("(QUIT)");
+        var input = Console.ReadLine();
 
-        shelter.Add(pet);
+        if (input.ToLower() == "add")
+        {
+          Console.WriteLine("What pet would you like to add?");
+          var pet = Console.ReadLine();
+          shelter.Add(pet);
+        }
+        else if (input.ToLower() == "adopt")
+        {
+          //Delete ... Remove
+          Console.WriteLine("What is the number of the pet that is getting adopted?");
+          var pet = Console.ReadLine();
+          shelter.RemoveAt(int.Parse(pet));
+        }
+        else if (input.ToLower() == "quit")
+        {
+          isRunning = false;
+        }
+
       }
 
+      Console.WriteLine("Goodbye");
     }
   }
 }
